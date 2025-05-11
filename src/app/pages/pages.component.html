@@ -1,0 +1,217 @@
+<mat-toolbar class="toolbar mb-3 position-fixed top-0 z-3 d-flex justify-content-between">
+    <div>
+        <img src="assets/images/logo.png" class="logo" alt="logo" />
+    </div>
+    <div class="d-flex">
+        <button
+            mat-button
+            *ngFor="let button of toolbarMenuConfig; let index = index"
+            class="toolbar-menu-button mx-2 rounded-0"
+            [ngClass]="{ 'selected-menu': button?.isSelected }"
+            (click)="onToolbarMenuItemClick(button?.label)"
+        >
+            <mat-icon
+                class="me-0 color-utility-300"
+                [ngClass]="{ 'color-primary-400': button?.isSelected }"
+            >
+                {{ button?.iconName }}
+            </mat-icon>
+            <span class="color-utility-300" [ngClass]="{ 'color-primary-400': button?.isSelected }">
+                {{ button?.label }}
+            </span>
+        </button>
+    </div>
+    <div class="d-flex align-items-center mx-2">
+        <mat-icon class="me-2 cursor-pointer">notifications_none</mat-icon>
+        <div
+            class="rounded-circle user-icon cursor-pointer d-flex align-items-center justify-content-center"
+        >
+            A
+        </div>
+    </div>
+</mat-toolbar>
+<div id="pagesContentContainer" class="d-flex">
+    <!-- <div id="sidebarParentContainer">
+        <mat-sidenav-container id="sidebarContainer" class="sidebar-container" autosize>
+            <mat-sidenav
+                mode="side"
+                opened="true"
+                class="sidemenu"
+                [ngClass]="{
+                    'd-none d-md-block': !isExpanded,
+                    'd-block fixed-width-nav pt-4': isExpanded,
+                }"
+                disableClose
+            >
+                <div class="overflow-x-hidden mt-5">
+                    <mat-nav-list [ngClass]="{ 'menu-items-expanded': isExpanded }">
+                        <div
+                            *ngFor="let item of sidebarConfig; let index = index"
+                            [ngClass]="{
+                                'menu-items': !isExpanded,
+                                'd-flex justify-content-center mb-2': isExpanded,
+                                'menu-selected bg-success-subtle': item?.isSelected && !isExpanded,
+                            }"
+                        >
+                            <div [ngClass]="{ ' expanded-mode-menu': isExpanded }">
+                                <mat-list-item
+                                    tabindex="0"
+                                    *ngIf="!isExpanded || !item?.showExpansion"
+                                    [ngClass]="{
+                                        'menu-selected-expand menu-items-expand': isExpanded,
+                                        'menu-border': !isExpanded,
+                                        'bg-menu': isExpanded && !item?.isSelected,
+                                    }"
+                                    (keydown.enter)="
+                                        onSideMenuItemClick(
+                                            item?.label,
+                                            item?.routerLink,
+                                            item?.showExpansion
+                                        )
+                                    "
+                                    (click)="
+                                        onSideMenuItemClick(
+                                            item?.label,
+                                            item?.routerLink,
+                                            item?.showExpansion
+                                        )
+                                    "
+                                >
+                                    <div
+                                        class="d-flex align-items-end"
+                                        [ngClass]="{
+                                            'menu-block-space': isExpanded,
+                                            'justify-content-center': !isExpanded,
+                                            'bg-success-subtle': item?.isSelected && isExpanded,
+                                        }"
+                                    >
+                                        <mat-icon
+                                            class="color-utility-300 material-icons-outlined material-symbols-outlined {{
+                                                item?.iconClass
+                                            }}"
+                                            [matTooltip]="item?.tooltipText || ''"
+                                            [matTooltipPosition]="'right'"
+                                            [matTooltipClass]="'tooltipClass'"
+                                        >
+                                            {{ item?.iconName }}
+                                        </mat-icon>
+                                        <div
+                                            *ngIf="isExpanded"
+                                            class="menu-label sidebar-menu-font ps-2"
+                                            [ngClass]="{ 'menu-label-wid': isExpanded }"
+                                        >
+                                            {{ item?.label }}
+                                        </div>
+                                        <mat-icon
+                                            class="color-utility-300 material-icons-outlined material-symbols-outlined menu-button {{
+                                                item?.iconClass
+                                            }}"
+                                            *ngIf="isExpanded && item?.showExpansion"
+                                        >
+                                            expand_more
+                                        </mat-icon>
+                                    </div>
+                                </mat-list-item>
+                            </div>
+                            <mat-accordion
+                                *ngIf="isExpanded && item?.showExpansion"
+                                [ngClass]="{
+                                    'expansion-arrow': item?.isSelected,
+                                }"
+                            >
+                                <mat-expansion-panel
+                                    class="m-3 shadow-none sub-menu-selected-border-radius"
+                                    [ngClass]="{
+                                        'disabled-pointer': !item?.subMenu,
+                                        'bg-expansion-panel': item?.isExpanded || item?.isSelected,
+                                    }"
+                                    [expanded]="item?.isExpanded"
+                                    (opened)="item.isExpanded = true"
+                                    (closed)="item.isExpanded = false"
+                                >
+                                    <mat-expansion-panel-header class="d-flex align-items-center">
+                                        <mat-panel-title>
+                                            <mat-icon
+                                                class="color-utility-300 material-icons-outlined material-symbols-outlined icon-margin {{
+                                                    item?.iconClass
+                                                }}"
+                                            >
+                                                {{ item?.iconName }}
+                                            </mat-icon>
+                                            <div
+                                                class="menu-label sidebar-menu-font color-utility-200"
+                                                [ngClass]="{
+                                                    'menu-label-wid submenu-selected': isExpanded,
+                                                }"
+                                            >
+                                                {{ item?.label }}
+                                            </div>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div
+                                        class="nav-list mb-2"
+                                        tabindex="0"
+                                        (keydown.enter)="
+                                            onSideMenuItemClick(
+                                                item?.label,
+                                                submenu?.routerLink,
+                                                item?.showExpansion,
+                                                {},
+                                                true
+                                            )
+                                        "
+                                        *ngFor="let submenu of item?.subMenu"
+                                        (click)="
+                                            onSideMenuItemClick(
+                                                item?.label,
+                                                submenu?.routerLink,
+                                                item?.showExpansion,
+                                                {},
+                                                true
+                                            )
+                                        "
+                                    >
+                                        <a
+                                            mat-list-item
+                                            [ngClass]="
+                                                item?.isSelected && submenu?.isSelected
+                                                    ? 'menu-selected bg-primary-1400'
+                                                    : 'color-utility-200'
+                                            "
+                                            class="p-2 submenu-selected"
+                                        >
+                                            <span class="d-flex align-items-center">
+                                                <mat-icon
+                                                    *ngIf="submenu?.iconName"
+                                                    class="color-utility-300 submenu-icon {{
+                                                        item?.iconClass
+                                                    }}"
+                                                >
+                                                    {{ submenu?.iconName }}
+                                                </mat-icon>
+                                                <span
+                                                    class="sidebar-submenu-font"
+                                                    [ngClass]="
+                                                        item?.isSelected && submenu?.isSelected
+                                                            ? 'color-accent-200'
+                                                            : 'color-utility-200'
+                                                    "
+                                                >
+                                                    {{ submenu?.name }}
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </div>
+                    </mat-nav-list>
+                </div>
+            </mat-sidenav>
+        </mat-sidenav-container>
+    </div> -->
+
+    <div id="sidebarContentContainer" class="content-container w-100">
+        <router-outlet></router-outlet>
+    </div>
+</div>

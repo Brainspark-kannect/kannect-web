@@ -1,0 +1,18 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@import './palette.scss';
+
+//new color constants
+
+$primary-50: map.get($primary-palatte, 50);
+$primary-100: map.get($primary-palatte, 100);
+$primary-200: map.get($primary-palatte, 200);
+$primary-300: map.get($primary-palatte, 300);
+$primary-400: map.get($primary-palatte, 400);
+$primary-500: map.get($primary-palatte, 500);
+$primary-600: map.get($primary-palatte, 600);
+
+$utility-50: map.get($utility-palatte, 50);
+$utility-100: map.get($utility-palatte, 100);
+$utility-200: map.get($utility-palatte, 200);
+$utility-300: map.get($utility-palatte, 300);

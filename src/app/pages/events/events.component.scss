@@ -1,0 +1,64 @@
+@import '../../style/palettes/constants.scss';
+
+.icon {
+    font-size: 1.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.event-cards {
+    border: 1.5px solid #a6dad7;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: none;
+    button {
+        background-color: #42b4e6;
+    }
+}
+
+.health-event-card {
+    .header {
+        background-color: #22c55e;
+        height: 0.5rem;
+        width: 100%;
+    }
+    .badge {
+        background: #dcfce7;
+        color: #166539;
+    }
+}
+
+.learning-event-card {
+    .header {
+        background-color: #7e69ab;
+        height: 0.5rem;
+        width: 100%;
+    }
+    .badge {
+        background: #f3e8ff;
+        color: #8566bb;
+    }
+}
+
+.team-building-event-card {
+    .header {
+        background-color: #42b4e6;
+        height: 0.5rem;
+        width: 100%;
+    }
+    .badge {
+        background: #dbeafe;
+        color: #1e40af;
+    }
+}
+
+.status-card {
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: none;
+}
+
+.text-success {
+    color: #4caf50;
+} // Use palette color for success

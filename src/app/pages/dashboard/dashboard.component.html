@@ -1,0 +1,154 @@
+<div class="container-fluid mt-0">
+    <div class="row" style="min-height: 80vh">
+        <div class="col-md-3 p-0">
+            <mat-card class="p-0 position-fixed navigation-menu">
+                <mat-card-header>
+                    <mat-card-title class="font-1">HR Dashboard</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-nav-list>
+                        <mat-list-item
+                            *ngFor="let item of menuItems"
+                            [class.active]="selectedMenu === item.key"
+                            (click)="selectMenu(item.key, item.label)"
+                            style="cursor: pointer"
+                        >
+                            {{ item.label }}
+                        </mat-list-item>
+                    </mat-nav-list>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="col-md-6">
+            <mat-card appearance="outlined" class="shadow-none border">
+                <mat-card-header>
+                    <mat-card-title class="font-1">HR Administration</mat-card-title>
+                    <mat-card-subtitle class="text-body-tertiary pb-3">
+                        Manage tasks, events, posts, employees, polls, and games
+                    </mat-card-subtitle>
+                </mat-card-header>
+            </mat-card>
+            <!-- <mat-card appearance="outlined" class="my-3">
+                <mat-card-content> -->
+            <mat-toolbar class="d-flex bg-white my-3 p-1 border rounded-2 justify-content-between">
+                <button
+                    *ngFor="let menu of menuItems"
+                    class="mx-2"
+                    mat-button
+                    [ngClass]="[selectedMenuName === menu?.label ? 'text-black' : 'text-secondary']"
+                >
+                    {{ menu?.label }}
+                </button>
+            </mat-toolbar>
+            <div class="mt-3">
+                <ng-container [ngSwitch]="selectedMenu">
+                    <div *ngSwitchCase="'tasks'">
+                        <ng-content *ngTemplateOutlet="tasks"></ng-content>
+                    </div>
+                    <!-- <div *ngSwitchCase="'forum'">
+                    <ng-content *ngTemplateOutlet="forumAndDiscussion"></ng-content>
+                </div>
+                <div *ngSwitchCase="'spine'">
+                    <ng-content *ngTemplateOutlet="snipShinner"></ng-content>
+                </div> -->
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="col-md-3 p-0 position-fixed navigation-menu align-right">
+            <mat-card appearance="outlined" class="p-0 m-0 mb-3 shadow-none border">
+                <mat-card-header>
+                    <mat-card-title class="font-1">Recent Activity</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="mb-2">
+                        <div class="fw-medium">New event created</div>
+                        <div class="small text-body-tertiary">Team Building - May 15</div>
+                    </div>
+                    <mat-divider class="my-2"></mat-divider>
+                    <div class="mb-2">
+                        <div class="fw-medium">Poll completed</div>
+                        <div class="small text-body-tertiary">Employee of the Month - 45 votes</div>
+                    </div>
+                    <mat-divider class="my-2"></mat-divider>
+
+                    <div>
+                        <div class="fw-medium">Task assigned</div>
+                        <div class="small text-body-tertiary">Project Review to Dev Team</div>
+                    </div>
+                    <mat-divider class="my-2"></mat-divider>
+                </mat-card-content>
+            </mat-card>
+            <mat-card appearance="outlined" class="p-0 m-0 mb-3 shadow-none border">
+                <mat-card-header>
+                    <mat-card-title class="font-1">Quick Actions</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <button mat-stroked-button class="w-100 mb-2 action-button">
+                        Send Notifications
+                    </button>
+                    <button mat-stroked-button class="w-100 mb-2 action-button">Retrigger</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<ng-template #tasks>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title class="">Create Task</mat-card-title>
+            <mat-card-subtitle class="text-body-tertiary">
+                Assign tasks to employees or teams
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="mt-3">
+                <div class="mb-3">
+                    <label class="fw-medium">Task Title</label>
+                    <div class="d-flex align-items-center">
+                        <mat-icon class="text-body-tertiary icon me-3">edit</mat-icon>
+                        <input
+                            matInput
+                            placeholder="Enter task title"
+                            class="p-2 form-group rounded-2 border"
+                        />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-medium">Description</label>
+                    <div class="d-flex align-items-center">
+                        <!-- <mat-icon class="text-body-tertiary icon me-3">edit</mat-icon> -->
+                        <textarea
+                            matInput
+                            placeholder="Description"
+                            class="p-2 form-group rounded-2 border"
+                        ></textarea>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-medium">Assignees</label>
+                    <div class="d-flex align-items-center">
+                        <mat-icon class="text-body-tertiary icon me-3">people</mat-icon>
+                        <mat-form-field class="form-group">
+                            <mat-select multiple>
+                                <mat-option *ngFor="let employee of employeesList">
+                                    {{ employee?.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-medium">Deadline</label>
+                    <div class="d-flex align-items-center">
+                        <mat-icon class="text-body-tertiary icon me-3">event_available</mat-icon>
+                        <input matInput type="date" class="form-group p-2 border rounded-2" />
+                    </div>
+                </div>
+                <button mat-flat-button class="w-100 create-button rounded-2">Create a Task</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</ng-template>

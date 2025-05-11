@@ -1,0 +1,131 @@
+@import '../../style/palettes/constants.scss';
+
+.divider {
+    width: 85%;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.profile-img-lg {
+    width: 100px;
+    height: 100px;
+}
+
+.crown-icon {
+    width: 50px;
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-20%) rotate(20deg);
+}
+
+.coin-image {
+    height: 2rem;
+}
+
+.leaderboard-btn {
+    width: 5rem;
+    border-radius: 3rem;
+    color: $utility-200;
+}
+
+.btn-selected {
+    background-color: $primary-600;
+    color: $utility-100;
+}
+
+.koin {
+    height: 1rem;
+}
+
+.shine-icon {
+    width: 3rem;
+    height: 2rem;
+}
+
+.add-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    background: $primary-400;
+    align-items: center;
+    justify-content: center;
+    color: $utility-100;
+    font-size: 1.5rem;
+    transform: translateX(-10px);
+}
+
+.birthday-card {
+    // background-image: url('/src/assets/images/birdday-card-bg.jpeg');
+    // background-size: cover;
+    // border-radius: 8px;
+    // padding: 16px;
+}
+
+.bday-gif {
+    width: 5rem;
+    height: 5rem;
+}
+
+.rotate-90 {
+    transform: rotate(90deg);
+}
+
+.rotate-reverse-90 {
+    transform: rotate(-90deg);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    font-family: 'Pacifico', cursive;
+    animation: slantText 1s ease-in-out infinite alternate;
+}
+
+/* Animation Keyframes */
+@keyframes slantText {
+    0% {
+        transform: skewX(0deg);
+    }
+    100% {
+        transform: skewX(-20deg);
+    }
+}
+
+.birthday-card-text {
+    left: 5rem;
+    position: absolute;
+    width: 3rem;
+    top: 4.5rem;
+}
+
+.person-photo {
+    height: 8rem;
+    width: 8rem;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.name {
+    position: absolute;
+    top: 11.3rem;
+    right: 6rem;
+}
+
+.column {
+    flex: 1;
+    overflow: hidden; /* Prevent all from scrolling by default */
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-scroll {
+    overflow-y: auto;
+    flex: 1;
+}

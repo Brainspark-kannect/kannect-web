@@ -1,0 +1,212 @@
+<div class="container-fluid content-container z-1">
+    <div class="row">
+        <!-- Sidebar/Profile -->
+        <div class="col-md-3 p-0">
+            <mat-card appearance="outlined" class="position-fixed navigation-menu">
+                <mat-card-header>
+                    <img mat-card-avatar src="assets/images/profile.png" />
+                    <mat-card-title>Anamika Mohod</mat-card-title>
+                    <mat-card-subtitle>Associate Software Engineer</mat-card-subtitle>
+                </mat-card-header>
+                <div class="d-flex justify-content-between align-items-center mx-3">
+                    <img src="assets/images/coins.png" class="coin-image" />
+                    <div class="color-primary-500 fw-bold">4</div>
+                </div>
+                <mat-divider class="my-2 align-self-center divider"></mat-divider>
+                <mat-card-content>
+                    <table>
+                        <colgroup>
+                            <col style="width: 40%" />
+                            <col style="width: 60%" />
+                        </colgroup>
+                        <tr>
+                            <td><b>Project:</b></td>
+                            <td>FIO Pulse</td>
+                        </tr>
+                        <tr>
+                            <td><b>Tech Stack:</b></td>
+                            <td>Angular, Typescript, HTML5, CSS</td>
+                        </tr>
+                        <tr>
+                            <td><b>Interest:</b></td>
+                            <td>Listening Music</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+            <!-- Add more sidebar widgets here -->
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-6">
+            <div>
+                <mat-card *ngFor="let card of pollQuestions" appearance="outlined" class="mb-2">
+                    <mat-card-header>
+                        <mat-card-title>{{ card?.question }}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="mt-2">
+                        <div
+                            class="form-check mb-2"
+                            *ngFor="let option of card.options; let i = index"
+                        >
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="selectedOption"
+                                [value]="option"
+                                [(ngModel)]="card.selectedOption"
+                                [id]="'option' + i"
+                                required
+                            />
+                            <label class="form-check-label" [for]="'option' + i">
+                                {{ option }}
+                            </label>
+                        </div>
+                        <div>
+                            <button
+                                mat-flat-button
+                                class="bg-primary-subtle rounded-5"
+                                (click)="submitPoll(card?.selectedOption)"
+                                [disabled]="!card?.selectedOption"
+                                [ngClass]="[
+                                    card?.selectedOption ? 'cursor-pointer' : 'cursor-not-allowed',
+                                ]"
+                            >
+                                Submit Vote
+                            </button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div>
+                <mat-card *ngFor="let card of birthdayList" appearance="outlined" class="p-0 mb-2">
+                    <mat-card-content class="p-0">
+                        <div>
+                            <img
+                                src="assets/images/bday.gif"
+                                alt="Happy Birthday"
+                                class="bday-gif rotate-90"
+                            />
+                        </div>
+                        <div class="birthday-card-text">
+                            <p class="title">Happy</p>
+                            <p class="title ms-5">Birthday</p>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <!-- <div>Happy Birthday</div> -->
+                            <img src="assets/images/user.jpg" alt="birthday" class="person-photo" />
+                            <!--  -->
+                        </div>
+                        <div class="name title">{{ card?.name }}</div>
+                        <div class="w-100 text-end">
+                            <img
+                                src="assets/images/bday.gif"
+                                alt="Happy Birthday"
+                                class="bday-gif rotate-reverse-90"
+                            />
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="col-md-3 p-0 position-fixed navigation-menu align-right">
+            <app-add-post-card
+                [cardConfig]="{
+                    title: 'Shine on Your Spin',
+                    subtitle: ['The Spotlight is on.. YOU! Prepare for your exciting task!'],
+                    headerImgSrc: 'assets/images/congratulations.gif',
+                    addPostButtonTitle: 'Post Something...',
+                }"
+            ></app-add-post-card>
+            <!-- <mat-card *ngIf="shineOnSpin" appearance="outlined" class="mb-2">
+                
+                <mat-card-header>
+                    <mat-card-title class="d-flex justify-content-between align-items-center">
+                        <img src="assets/images/congratulations.gif" class="shine-icon" />
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        The Spotlight's on.. YOU! Prepare for your exciting task!
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="mt-3 mb-1">
+                        <button mat-flat-button class="bg-primary-subtle rounded-5">
+                            <mat-icon class="add-icon">add</mat-icon>
+                            Post Something...
+                        </button>
+                    </div>
+                </mat-card-content>
+            </mat-card> -->
+
+            <mat-card appearance="outlined" class="mb-2">
+                <mat-card-header><mat-card-title>Leaderboard</mat-card-title></mat-card-header>
+                <mat-card-content>
+                    <div class="d-flex justify-content-between mt-2">
+                        <button
+                            *ngFor="let button of leaderBoardButtonConfig"
+                            mat-button
+                            class="leaderboard-btn"
+                            [ngClass]="{ 'btn-selected': button?.isSelected }"
+                            (click)="getLeaders(button.label)"
+                        >
+                            {{ button?.label }}
+                        </button>
+                    </div>
+                    <div class="text-center mt-3">
+                        <div class="d-flex justify-content-center">
+                            <div class="mt-5">
+                                <div class="card border-0">
+                                    <div>2</div>
+                                    <img
+                                        src="assets/images/profile.png"
+                                        class="rounded-circle profile-img"
+                                    />
+                                    <div>Name</div>
+                                    <div class="text-primary fw-bold">
+                                        <img src="assets/images/coins.png" class="koin" />
+                                        1847
+                                    </div>
+                                    <div class="text-muted">Username</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mb-2">1</div>
+                                <div class="card border-0">
+                                    <img
+                                        src="assets/images/profile.png"
+                                        class="rounded-circle profile-img profile-img-lg border border-warning border-3"
+                                    />
+                                    <img src="assets/images/crown.png" class="crown-icon" />
+
+                                    <div>Name</div>
+                                    <div class="text-warning fw-bold">
+                                        <img src="assets/images/coins.png" class="koin" />
+                                        2430
+                                    </div>
+                                    <div class="text-muted">username</div>
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <div class="card border-0">
+                                    <div>3</div>
+                                    <img
+                                        src="assets/images/profile.png"
+                                        class="rounded-circle profile-img"
+                                    />
+                                    <div>Name</div>
+                                    <div class="text-success fw-bold">
+                                        <img src="assets/images/coins.png" class="koin" />
+                                        1674
+                                    </div>
+                                    <div class="text-muted">username</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

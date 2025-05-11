@@ -1,0 +1,68 @@
+.hr-admin-page {
+    // background: $background;
+    min-height: 100vh;
+    padding-top: 32px;
+}
+
+.card,
+.sidebar-card {
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    // background: $card-bg;
+    border: none;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+.text-muted {
+    // color: $text-secondary;
+}
+
+.nav-tabs .nav-link.active {
+    // background: map.get($primary-palatte, 50);
+    // color: map.get($primary-palatte, 200);
+    border: none;
+    border-bottom: 2px solid red;
+}
+.nav-tabs .nav-link {
+    // color: $text-secondary;
+    border: none;
+}
+
+.mat-form-field {
+    // background: $background;
+    border-radius: 8px;
+}
+
+// button:hover {
+//     background-color: transparent !important;
+// }
+
+.action-button {
+    background-color: #f4f7fb !important;
+    color: #42b4e6 !important;
+    border: 0.7px solid #42b4e6;
+}
+
+form {
+    width: 18rem;
+}
+
+.form-group {
+    width: 100%;
+    // margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+.create-button {
+    background-color: #42b4e6;
+    color: white;
+}

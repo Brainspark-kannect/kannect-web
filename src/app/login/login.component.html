@@ -1,0 +1,41 @@
+<div class="login-background d-flex align-items-center justify-content-center flex-column">
+    <img src="assets/images/Kannect-logo.png" class="logo mb-3" alt="logo" />
+    <div class="login-card d-flex w-100 flex-column align-items-center rounded-4">
+        <h2 class="login-title mb-4">Login</h2>
+        <!-- <div>
+            <div>Wrong Credentials.</div>
+            <div>Invalid username or password.</div>
+        </div> -->
+        <div class="form-group">
+            <input
+                matInput
+                id="username"
+                name="username"
+                placeholder="Username"
+                type="text"
+                class="rounded-2"
+                autofocus
+                required
+            />
+        </div>
+        <div></div>
+        <div class="form-group">
+            <input
+                matInput
+                id="password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                class="rounded-2"
+                required
+            />
+        </div>
+        <button mat-raised-button class="login-btn w-100 border-0 rounded-2" (click)="doLogin()">
+            Login
+        </button>
+
+        <div class="text-center mt-2">
+            <a class="pointer-cursor text-decoration-none">Forgot password?</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,173 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 p-0">
+            <mat-card class="position-fixed navigation-menu">
+                <mat-card-header class="d-flex justify-content-between align-items-center">
+                    <mat-card-title class="font-1">Event Filters</mat-card-title>
+                    <mat-icon class="font-1">filter_list</mat-icon>
+                </mat-card-header>
+                <mat-card-content class="mt-2">
+                    <div class="mb-3">
+                        <div class="fw-medium mb-2 text-body-tertiary">Categories</div>
+                        <div class="ms-3">
+                            <div class="d-flex align-items-center mb-3">
+                                <mat-icon class="me-2 text-body-tertiary icon">groups</mat-icon>
+                                Team Building
+                                <span
+                                    class="badge text-black rounded-pill fw-normal ms-auto bg-body-secondary"
+                                >
+                                    3
+                                </span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <mat-icon class="me-2 text-body-tertiary icon">check_box</mat-icon>
+                                Health & Wellness
+                                <span
+                                    class="badge text-black rounded-pill fw-normal ms-auto bg-body-secondary"
+                                >
+                                    2
+                                </span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <mat-icon class="me-2 text-body-tertiary icon">menu_book</mat-icon>
+                                Learning & Development
+                                <span
+                                    class="badge text-black rounded-pill fw-normal ms-auto bg-body-secondary"
+                                >
+                                    4
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="fw-medium mb-2 text-body-tertiary">Time Frame</div>
+                        <div class="ms-3">
+                            <div class="d-flex align-items-center mb-3">
+                                <mat-icon class="me-2 text-body-tertiary icon">
+                                    calendar_today
+                                </mat-icon>
+                                This Week
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <mat-icon class="me-2 text-body-tertiary icon">
+                                    calendar_month
+                                </mat-icon>
+                                This Month
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <mat-icon class="me-2 text-body-tertiary icon">
+                                    event_available
+                                </mat-icon>
+                                All Upcoming
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="fw-medium mb-2 text-body-tertiary">Location</div>
+                        <div class="ms-3">
+                            <div class="d-flex align-items-center mb-3">
+                                In-Person
+                                <span
+                                    class="badge text-black rounded-pill fw-normal ms-auto bg-body-secondary"
+                                >
+                                    5
+                                </span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                Virtual
+                                <span
+                                    class="badge text-black rounded-pill fw-normal ms-auto bg-body-secondary"
+                                >
+                                    3
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-6">
+            <h2 class="fw-bold">Upcoming Events</h2>
+            <div class="text-black-50 font-1 mb-4">
+                Register for company events and health challenges
+            </div>
+            <div>
+                <div *ngFor="let event of eventsCardConfig">
+                    <div
+                        class="event-cards border mb-4"
+                        [ngClass]="{
+                            'health-event-card': event?.eventType?.toLowerCase() === 'health',
+                            'learning-event-card': event?.eventType?.toLowerCase() === 'learning',
+                            'team-building-event-card':
+                                event?.eventType?.toLowerCase() === 'team building',
+                        }"
+                    >
+                        <div class="header"></div>
+                        <mat-card class="rounded-0">
+                            <mat-card-content>
+                                <div></div>
+                                <span
+                                    class="badge event-badge rounded-pill team-building-badge mb-3 fw-medium"
+                                >
+                                    {{ event?.eventType }}
+                                </span>
+                                <h3 class="fw-bold mb-1">{{ event?.topic }}</h3>
+                                <div class="text-body-tertiary mb-3">
+                                    {{ event?.description }}
+                                </div>
+                                <div class="mb-2 d-flex">
+                                    <mat-icon class="icon text-body-tertiary me-1">
+                                        calendar_today
+                                    </mat-icon>
+                                    {{ event?.time }}
+                                </div>
+                                <div class="mb-3 d-flex">
+                                    <mat-icon class="icon text-body-tertiary me-1">
+                                        location_on
+                                    </mat-icon>
+                                    {{ event?.venue }}
+                                </div>
+                                <button mat-raised-button class="w-100 rounded-2 text-white">
+                                    Register
+                                </button>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="col-md-3 p-0 position-fixed navigation-menu align-right">
+            <mat-card appearance="outlined" class="h-100">
+                <mat-card-content>
+                    <div>
+                        <div class="fw-semibold mb-2">Upcoming Events</div>
+                        <div *ngFor="let event of upcommingEvents">
+                            <div class="d-flex mb-2">
+                                <mat-icon class="me-2 icon text-body-tertiary mt-1">event</mat-icon>
+                                <div>
+                                    <div class="fw-medium">{{ event?.topic }}</div>
+                                    <small class="text-body-tertiary">{{ event?.time }}</small>
+                                </div>
+                            </div>
+                            <mat-divider class="mb-2"></mat-divider>
+                        </div>
+                    </div>
+                    Your Status
+                    <div class="card status-card">
+                        <div
+                            class="d-flex align-items-center px-2 py-1"
+                            style="background-color: #f0fdf4"
+                        >
+                            <mat-icon class="me-2 text-success">check_circle</mat-icon>
+                            <span class="fw-light">3 events registered this month</span>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

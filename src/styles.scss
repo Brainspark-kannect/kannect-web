@@ -1,0 +1,84 @@
+@import './app/style/palettes/constants.scss';
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.tooltipClass {
+    white-space: pre-line;
+    .mdc-tooltip__surface {
+        background-color: #fff !important;
+        color: #000 !important;
+        border: 1px solid #000;
+    }
+}
+
+.pointer-cursor {
+    cursor: pointer;
+}
+
+.toolbar-menu-button {
+    .mdc-button__label {
+        height: 1rem;
+        transform: translateY((-0.5rem));
+    }
+}
+
+.color-utility-300 {
+    color: $utility-300;
+}
+
+.color-utility-200 {
+    color: $utility-200;
+}
+
+.color-primary-400 {
+    color: $primary-400;
+}
+
+.color-primary-500 {
+    color: $primary-500;
+}
+
+mat-card {
+    border-radius: 0.7rem !important;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
+
+mat-list-item.active {
+    background: #e3f2fd;
+    font-weight: bold;
+}
+
+.font-1 {
+    font-size: 1rem !important;
+}
+
+.navigation-menu {
+    width: 19.5rem;
+    height: 88vh;
+}
+
+.align-right {
+    right: 1.2rem;
+}
+
+.mdc-linear-progress__bar-inner {
+    border-color: #42b4e6 !important;
+    border-radius: 1rem !important;
+}
+.mdc-linear-progress__buffer-bar {
+    background-color: #f4f7fb !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+    height: 0 !important;
+}

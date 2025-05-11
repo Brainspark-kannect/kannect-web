@@ -1,0 +1,81 @@
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <div
+            mat-card-avatar
+            class="user-icon mb-0 d-flex justify-content-center align-items-center text-white"
+        >
+            {{ cardConfig?.authorname?.[0] }}
+        </div>
+        <mat-card-title class="font-1">{{ cardConfig?.authorname }}</mat-card-title>
+        <mat-card-subtitle class="subtitle d-flex">
+            {{ cardConfig?.authorRole }}
+            <ul *ngIf="cardConfig?.time" class="px-4 mb-0">
+                <li>{{ cardConfig?.time }}</li>
+            </ul>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="mt-2">
+            <h2>{{ cardConfig?.title }}</h2>
+        </div>
+        <div class="text-black-50">
+            <p *ngIf="!cardConfig?.showFullText">
+                {{ cardConfig?.content | slice: 0 : 300 }}...
+                <a
+                    href="javascript:void(0)"
+                    (click)="toggleText()"
+                    class="pointer-cursor text-decoration-none"
+                >
+                    {{ cardConfig?.showFullText ? 'less' : 'more' }}
+                </a>
+            </p>
+            <p *ngIf="cardConfig?.showFullText">
+                {{ cardConfig?.content }}
+                <a
+                    href="javascript:void(0)"
+                    (click)="toggleText()"
+                    class="pointer-cursor text-decoration-none"
+                >
+                    {{ cardConfig?.showFullText ? 'less' : 'more...' }}
+                </a>
+            </p>
+        </div>
+        <div></div>
+        <mat-divider class="my-3"></mat-divider>
+        <div>
+            <div class="d-flex justify-content-between">
+                <div class="d-flex gap-3">
+                    <div
+                        *ngIf="!cardConfig?.hideUpvote"
+                        class="d-flex align-items-center text-black-50"
+                    >
+                        <mat-icon class="material-symbols-outlined pointer-cursor icon">
+                            thumb_up
+                        </mat-icon>
+                        <span class="ps-1">{{ cardConfig?.upVoteCount }}</span>
+                    </div>
+                    <div
+                        *ngIf="!cardConfig?.hideDownvote"
+                        class="d-flex align-items-center text-black-50"
+                    >
+                        <mat-icon class="material-symbols-outlined pointer-cursor icon">
+                            thumb_down
+                        </mat-icon>
+                        <span class="ps-1">{{ cardConfig?.downVoteCount }}</span>
+                    </div>
+                    <div class="d-flex align-items-center text-black-50">
+                        <mat-icon class="material-symbols-outlined pointer-cursor icon">
+                            message
+                        </mat-icon>
+                        <span class="px-1">{{ cardConfig?.commentCount }}</span>
+                    </div>
+                </div>
+                <div *ngIf="!cardConfig?.hideAnswersCount" class="d-flex align-items-center">
+                    <a class="pointer-cursor text-decoration-none text-black-50">
+                        1 of {{ cardConfig?.answersCount }} answers
+                    </a>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

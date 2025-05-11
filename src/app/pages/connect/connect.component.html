@@ -1,0 +1,165 @@
+<div class="container-fluid mt-0">
+    <div class="row" style="min-height: 80vh">
+        <!-- Column 1: Menu -->
+        <div class="col-md-3 p-0">
+            <mat-card class="p-0 position-fixed navigation-menu">
+                <mat-card-header>
+                    <mat-card-title class="font-1">Forums & Discussions</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-nav-list>
+                        <mat-list-item
+                            *ngFor="let item of menuItems"
+                            [class.active]="selectedMenu === item.key"
+                            (click)="selectMenu(item.key)"
+                            style="cursor: pointer"
+                        >
+                            {{ item.label }}
+                        </mat-list-item>
+                    </mat-nav-list>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <!-- Column 2: Content -->
+        <div class="col-md-6">
+            <ng-container [ngSwitch]="selectedMenu">
+                <div *ngSwitchCase="'help'">
+                    <ng-content *ngTemplateOutlet="helpSharing"></ng-content>
+                </div>
+                <div *ngSwitchCase="'forum'">
+                    <ng-content *ngTemplateOutlet="forumAndDiscussion"></ng-content>
+                </div>
+                <div *ngSwitchCase="'spine'">
+                    <ng-content *ngTemplateOutlet="snipShinner"></ng-content>
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- Column 3: Trending Posts -->
+        <div class="col-md-3 p-0 position-fixed navigation-menu align-right">
+            <mat-card appearance="outlined" class="p-0 m-0 mb-3">
+                <mat-card-header>
+                    <mat-card-title>Trending Posts</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let post of trendingPosts" class="mt-2">
+                        <div class="title">{{ post?.title }}</div>
+                        <div class="d-flex text-secondary subtitle">
+                            <span>{{ post?.upvotes }} upvotes</span>
+                            <ul class="px-3 m-0">
+                                <li>{{ post?.comments }} comments</li>
+                            </ul>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card appearance="outlined" class="p-0 m-0">
+                <mat-card-header>
+                    <mat-card-title>Top Contributors</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let contributor of topContributors" class="mt-2">
+                        <div class="d-flex">
+                            <div>
+                                <mat-card class="shadow-none mb-2">
+                                    <mat-card-header class="p-0 align-items-center">
+                                        <span
+                                            mat-card-avatar
+                                            class="bg-primary m-0 d-flex justify-content-center align-items-center text-white"
+                                        >
+                                            {{ contributor?.name?.[0] }}
+                                        </span>
+                                        <mat-card-title class="font-1">
+                                            {{ contributor?.name }}
+                                        </mat-card-title>
+                                        <mat-card-subtitle class="subtitle">
+                                            {{ contributor?.role }}
+                                        </mat-card-subtitle>
+                                    </mat-card-header>
+                                </mat-card>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<ng-template #helpSharing>
+    <div>
+        <app-add-post-card
+            [cardConfig]="{
+                title: 'Ask a Question',
+                subtitle: [
+                    'Need help with something? Ask the community!',
+                    'Curious or confused? Lets talk it through!',
+                    'Looking for guidance? Open it up to the community!',
+                    'Your team is your best resource — just ask!',
+                ],
+                addPostButtonTitle: 'Post your query..',
+            }"
+        ></app-add-post-card>
+        <div class="my-3" *ngFor="let config of helpPosts">
+            <app-help-sharing-card [cardConfig]="config"></app-help-sharing-card>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #forumAndDiscussion>
+    <div>
+        <app-add-post-card
+            [cardConfig]="{
+                title: 'Join the Conversation',
+                subtitle: [
+                    'Share insights, spark discussions, and connect with colleagues across the organization.',
+                    'Dive into discussions, share knowledge, or get feedback from peers',
+                    'Got something on your mind? Bring it to the team!',
+                    'From challenges to ideas — talk it out with your team.',
+                ],
+                addPostButtonTitle: 'Share Now',
+            }"
+        ></app-add-post-card>
+        <div class="my-3" *ngFor="let config of forumPosts">
+            <app-help-sharing-card [cardConfig]="config"></app-help-sharing-card>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #snipShinner>
+    <div>
+        <app-add-post-card
+            [cardConfig]="{
+                title: 'Shine on Your Spin',
+                subtitle: [
+                    'The Spotlight is on.. YOU! Prepare for your exciting task!',
+                    'All eyes on you – take the stage with confidence!',
+                    'It’s your moment! Make it count!',
+                    'Gear up! Your challenge awaits!',
+                ],
+                addPostButtonTitle: 'Post Something..',
+            }"
+        ></app-add-post-card>
+        <div *ngFor="let item of spinPostList">
+            <div class="text-center">
+                <div class="duration rounded my-2 py-1">{{ item }}</div>
+            </div>
+            <div *ngFor="let cardConfig of spinShinnersPost?.[item]" class="mb-3">
+                <app-help-sharing-card [cardConfig]="cardConfig"></app-help-sharing-card>
+            </div>
+        </div>
+        <!-- <div>This Week</div>
+        <div class="my-3" *ngFor="let config of forumPosts">
+            <app-help-sharing-card [cardConfig]="config"></app-help-sharing-card>
+        </div>
+        Last Week
+        <div class="my-3" *ngFor="let config of forumPosts">
+            <app-help-sharing-card [cardConfig]="config"></app-help-sharing-card>
+        </div>
+        Earlier
+        <div class="my-3" *ngFor="let config of forumPosts">
+            <app-help-sharing-card [cardConfig]="config"></app-help-sharing-card>
+        </div> -->
+    </div>
+</ng-template>

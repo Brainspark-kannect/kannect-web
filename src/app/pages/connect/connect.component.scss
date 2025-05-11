@@ -1,0 +1,36 @@
+.container-fluid {
+    margin-top: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+button {
+    font-size: 1rem;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 550;
+}
+
+.title:hover {
+    color: #1bb7ea;
+    cursor: pointer;
+}
+
+.subtitle {
+    font-size: 0.7rem;
+}
+
+.duration {
+    width: 5rem;
+    background: #dedef5;
+    margin: auto;
+}

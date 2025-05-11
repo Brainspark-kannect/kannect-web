@@ -1,0 +1,103 @@
+.journal-page {
+    // background: $background;
+    min-height: 100vh;
+    padding-top: 32px;
+}
+
+.card,
+.sidebar-card {
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    // background: $card-bg;
+    border: none;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+.text-muted {
+    // color: $text-secondary;
+}
+.text-warning {
+    color: #ffc107;
+}
+.text-success {
+    color: #4caf50;
+}
+.text-info {
+    color: #1976d2;
+}
+.text-purple {
+    color: #8e24aa;
+}
+
+.wallet-coins {
+    background: #fffde7;
+    color: #fbc02d;
+    font-size: 2rem;
+    font-weight: 700;
+    border-radius: 50%;
+    padding: 12px 24px;
+    margin-right: 8px;
+    width: 6rem;
+    height: 6rem;
+}
+.wallet-rank {
+    background: #e3f2fd;
+    color: #1976d2;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 50%;
+    padding: 8px 16px;
+    width: 6rem;
+    height: 6rem;
+}
+
+.icon {
+    font-size: 1.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.calender-icon {
+    font-size: 0.9rem;
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
+.recent-entries {
+    height: 45vh;
+    overflow-y: auto;
+}
+
+button {
+    background-color: #f4f7fb !important;
+    border: 1px solid #42b4e6 !important;
+    color: #42b4e6 !important;
+    border-radius: 0.4rem;
+}
+button:hover {
+    background-color: #42b4e6 !important;
+    color: #fff !important;
+}
+
+.label {
+    font-size: 0.8rem;
+}
+
+.margin-left {
+    margin-left: 4.3rem;
+}
+
+.achievement-icon {
+    background-color: #f4f7fb;
+    color: #42b4e6;
+}
+
+.bg-light-blue {
+    background-color: #eff6ff;
+}
+
+.bg-light-purple {
+    background-color: #faf5ff;
+}

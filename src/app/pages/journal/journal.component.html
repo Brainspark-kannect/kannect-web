@@ -1,0 +1,201 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 p-0">
+            <mat-card class="position-fixed navigation-menu">
+                <mat-card-header>
+                    <mat-card-title class="font-1">Journal Categories</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="mt-2">
+                    <div class="mb-3 ms-3">
+                        <div class="d-flex align-items-center mb-3">
+                            <mat-icon class="me-2 text-warning icon">star</mat-icon>
+                            Goals
+                            <span
+                                class="badge text-black rounded-pill fw-normal ms-auto bg-body-secondary"
+                            >
+                                3
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <mat-icon class="me-2 text-success icon">emoji_events</mat-icon>
+                            Achievements
+                            <span
+                                class="badge text-black rounded-pill fw-normal ms-auto bg-body-secondary"
+                            >
+                                2
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <mat-icon class="me-2 text-info icon">check_circle</mat-icon>
+                            Tasks
+                            <span
+                                class="badge text-black rounded-pill fw-normal ms-auto bg-body-secondary"
+                            >
+                                5
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fw-medium mb-2">Recent Entries</div>
+                    <div class="ms-3 recent-entries">
+                        <div *ngFor="let entry of recentEntries" class="mb-2 small">
+                            <div class="fw-medium">{{ entry?.topic }}</div>
+                            <div class="d-flex align-items-center">
+                                <mat-icon class="me-2 text-body-tertiary calender-icon">
+                                    calendar_today
+                                </mat-icon>
+                                <span class="text-body-tertiary">{{ entry?.date }}</span>
+                            </div>
+                            <mat-divider class="my-2"></mat-divider>
+                        </div>
+                    </div>
+                    <button mat-stroked-button class="w-100 mt-2">New Journal Entry</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <!-- Main Content -->
+        <div class="col-md-6">
+            <h2 class="fw-bold">My Journal</h2>
+            <div class="text-black-50 font-1 mb-4">Track your personal goals and achievements</div>
+            <!-- Personal Goals -->
+            <mat-card appearance="outlined" class="mb-3 pb-0">
+                <mat-card-content>
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex">
+                                <mat-icon class="me-2 text-warning icon">star</mat-icon>
+                                <div class="font-1 fw-semibold">Personal Goals</div>
+                            </div>
+                            <button mat-stroked-button size="small">Add Goal</button>
+                        </div>
+                        <div *ngFor="let goal of goalsList" class="my-2">
+                            <div class="mb-3 p-3 rounded-3 border">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div class="fw-bold">{{ goal?.name }}</div>
+                                    <div class="d-flex align-items-center">
+                                        <mat-icon class="me-2 text-body-tertiary calender-icon">
+                                            calendar_today
+                                        </mat-icon>
+                                        <span class="text-body-tertiary label">
+                                            {{ goal?.dueDate }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <mat-progress-bar
+                                    color="primary"
+                                    mode="determinate"
+                                    value="{{ goal?.completionPercent }}"
+                                ></mat-progress-bar>
+                                <div
+                                    class="d-flex justify-content-between small text-body-tertiary mt-2 align-items-center"
+                                >
+                                    <span>{{ goal?.completionPercent }}% complete</span>
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <a class="small">Update</a>
+                                        <a class="small">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card appearance="outlined" class="mb-3 pb-0">
+                <mat-card-content>
+                    <div>
+                        <div class="d-flex">
+                            <mat-icon class="me-2 text-info">emoji_events</mat-icon>
+                            <div class="font-1 fw-semibold">Achievements</div>
+                        </div>
+                        <div *ngFor="let achievement of achievmentList" class="my-2">
+                            <mat-card appearance="outlined" class="bg-transparent">
+                                <mat-card-header>
+                                    <mat-icon
+                                        mat-card-avatar
+                                        class="mb-0 achievement-icon d-flex align-items-center justify-content-center"
+                                    >
+                                        check_circle
+                                    </mat-icon>
+                                    <mat-card-title class="font-1 mb-1">
+                                        {{ achievement?.name }}
+                                    </mat-card-title>
+                                    <mat-card-subtitle class="text-body-tertiary mb-1">
+                                        {{ achievement?.description }}
+                                    </mat-card-subtitle>
+                                </mat-card-header>
+                                <div class="d-flex margin-left pb-3">
+                                    <mat-icon class="me-2 text-body-tertiary calender-icon">
+                                        calendar_today
+                                    </mat-icon>
+                                    <span class="text-body-tertiary">
+                                        {{ achievement?.date }}
+                                    </span>
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title class="font-1">My Wallet</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="d-flex align-items-center justify-content-center gap-3 mt-2">
+                        <div
+                            class="wallet-coins d-flex flex-column justify-content-center align-items-center"
+                        >
+                            <span>
+                                {{ 4 }}
+                            </span>
+                            <span style="font-size: 0.7rem" class="fw-light">Coins</span>
+                        </div>
+                        <div
+                            class="wallet-rank d-flex flex-column justify-content-center align-items-center"
+                        >
+                            <span>#{{ 14 }}</span>
+                            <span style="font-size: 0.7rem" class="fw-light">Rank</span>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="col-md-3 p-0 position-fixed navigation-menu align-right">
+            <mat-card appearance="outlined">
+                <mat-card-header>
+                    <mat-card-title class="font-1">Recent Achievements</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div>
+                        <div *ngFor="let achievement of achievmentList">
+                            <div class="d-flex align-items-center mb-2">
+                                <mat-icon class="me-2 text-warning icon">emoji_events</mat-icon>
+                                {{ achievement?.name }}
+                                <span class="badge rounded-pill ms-auto bg-warning text-dark">
+                                    +25
+                                </span>
+                            </div>
+                            <mat-divider class="my-2"></mat-divider>
+                        </div>
+                        <div>
+                            <div class="font-1 fw-medium mt-3">Next Goals</div>
+                            <div *ngFor="let goal of goalsList; let index = index">
+                                <div
+                                    class="d-flex align-items-center my-2 p-1 rounded-2"
+                                    [ngClass]="[
+                                        index % 2 == 0 ? 'bg-light-blue' : 'bg-light-purple',
+                                    ]"
+                                >
+                                    <mat-icon class="me-2 text-info icon">star</mat-icon>
+                                    {{ goal?.name }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
